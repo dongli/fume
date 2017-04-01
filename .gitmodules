@@ -1,0 +1,3 @@
+[submodule "lib/fut"]
+	path = lib/fut
+	url = https://github.com/dongli/fut.git
