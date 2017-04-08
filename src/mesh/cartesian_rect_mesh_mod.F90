@@ -1,4 +1,4 @@
-module cartesian_mesh_mod
+module cartesian_rect_mesh_mod
 
   use commons_mod
   use cartesian_domain_mod
@@ -7,15 +7,15 @@ module cartesian_mesh_mod
 
   private
 
-  public cartesian_mesh_init
-  public cartesian_mesh_final
+  public cartesian_rect_mesh_init
+  public cartesian_rect_mesh_final
   public FULL, HALF
   public mesh
 
   integer, parameter :: FULL = 1
   integer, parameter :: HALF = 2
 
-  type cartesian_mesh_type
+  type cartesian_rect_mesh_type
     integer nx(2)
     integer ny(2)
     integer nz(2)
@@ -28,13 +28,13 @@ module cartesian_mesh_mod
     real, allocatable :: x(:,:) ! Grid X coordinates
     real, allocatable :: y(:,:) ! Grid Y coordinates
     real, allocatable :: z(:,:) ! Grid Z coordinates
-  end type cartesian_mesh_type
+  end type cartesian_rect_mesh_type
 
-  type(cartesian_mesh_type) mesh
+  type(cartesian_rect_mesh_type) mesh
 
 contains
 
-  subroutine cartesian_mesh_init(full_grid, half_grid, halo_width)
+  subroutine cartesian_rect_mesh_init(full_grid, half_grid, halo_width)
 
     integer, intent(in) :: full_grid(:)
     integer, intent(in) :: half_grid(:)
@@ -98,14 +98,14 @@ contains
       end do
     end if
 
-  end subroutine cartesian_mesh_init
+  end subroutine cartesian_rect_mesh_init
 
-  subroutine cartesian_mesh_final()
+  subroutine cartesian_rect_mesh_final()
 
     if (allocated(mesh%x)) deallocate(mesh%x)
     if (allocated(mesh%y)) deallocate(mesh%y)
     if (allocated(mesh%z)) deallocate(mesh%z)
 
-  end subroutine cartesian_mesh_final
+  end subroutine cartesian_rect_mesh_final
 
-end module cartesian_mesh_mod
+end module cartesian_rect_mesh_mod

@@ -1,0 +1,1 @@
+Added MPI stuffs, and it is convenient to add a MPI stub in case there is no need of parallel supports.
