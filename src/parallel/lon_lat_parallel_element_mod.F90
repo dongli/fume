@@ -17,9 +17,12 @@ module lon_lat_parallel_element_mod
 
 contains
 
-  subroutine lon_lat_parallel_element_init(pe)
+  subroutine lon_lat_parallel_element_init(pe, id)
 
     type(lon_lat_parallel_element_type), intent(out) :: pe
+    integer, intent(in) :: id
+
+    pe%id = id
 
   end subroutine lon_lat_parallel_element_init
 

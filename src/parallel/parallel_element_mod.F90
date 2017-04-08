@@ -13,18 +13,19 @@ module parallel_element_mod
 
 contains
 
-  subroutine parallel_element_init(pe)
+  subroutine parallel_element_init(pe, id)
 
     type(parallel_element_type), intent(out) :: pe
+    integer, intent(in) :: id
 
     nullify(pe%cartesian_rect)
     nullify(pe%lon_lat)
     if (commons%mesh_type == 'cartesian_rect') then
       allocate(pe%cartesian_rect)
-      call cartesian_rect_parallel_element_init(pe%cartesian_rect)
+      call cartesian_rect_parallel_element_init(pe%cartesian_rect, id)
     else if (commons%mesh_type == 'lon_lat') then
       allocate(pe%lon_lat)
-      call lon_lat_parallel_element_init(pe%lon_lat)
+      call lon_lat_parallel_element_init(pe%lon_lat, id)
     end if
 
   end subroutine parallel_element_init

@@ -5,23 +5,31 @@ module parallel_process_mod
 
   implicit none
 
+  private
+
+  public parallel_process_init
+  public parallel_process_final
+  public parallel_process_type
+
   type parallel_process_type
     integer id
+    integer num_element
     type(parallel_element_type), allocatable :: parallel_elements(:)
   end type parallel_process_type
 
 contains
 
-  subroutine parallel_process_init(pp, ne)
+  subroutine parallel_process_init(pp, num_element)
 
     type(parallel_process_type), intent(inout) :: pp
-    integer, intent(in) :: ne
+    integer, intent(in) :: num_element
 
     integer i
 
-    allocate(pp%parallel_elements(ne))
-    do i = 1, ne
-      call parallel_element_init(pp%parallel_elements(i))
+    pp%num_element = num_element
+    allocate(pp%parallel_elements(num_element))
+    do i = 1, num_element
+      call parallel_element_init(pp%parallel_elements(i), id=i)
     end do
 
   end subroutine parallel_process_init

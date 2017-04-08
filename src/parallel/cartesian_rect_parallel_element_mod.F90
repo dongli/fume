@@ -1,5 +1,7 @@
 module cartesian_rect_parallel_element_mod
 
+  use cartesian_rect_mesh_mod
+
   implicit none
 
   type cartesian_rect_parallel_element_type
@@ -17,9 +19,12 @@ module cartesian_rect_parallel_element_mod
 
 contains
 
-  subroutine cartesian_rect_parallel_element_init(pe)
+  subroutine cartesian_rect_parallel_element_init(pe, id)
 
     type(cartesian_rect_parallel_element_type), intent(out) :: pe
+    integer, intent(in) :: id
+
+    pe%id = id
 
   end subroutine cartesian_rect_parallel_element_init
 
