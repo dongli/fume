@@ -11,6 +11,8 @@ set (src
   "src/commons_mod.F90"
   "src/domain/cartesian_domain_mod.F90"
   "src/mesh/cartesian_rect_mesh_mod.F90"
+  "src/parallel/cartesian_rect_parallel_element_mod.F90"
+  "src/parallel/lon_lat_parallel_element_mod.F90"
   "src/parallel/parallel_element_mod.F90"
   "src/parallel/parallel_process_mod.F90"
   "src/parallel/parallel_manager_mod.F90"

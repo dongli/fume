@@ -1,34 +1,10 @@
 module parallel_element_mod
 
   use commons_mod
+  use cartesian_rect_parallel_element_mod
+  use lon_lat_parallel_element_mod
 
   implicit none
-
-  type cartesian_rect_parallel_element_type
-    integer id
-    integer nx
-    integer ny
-    integer nz
-    integer start_x_idx(2)
-    integer start_y_idx(2)
-    integer start_z_idx(2)
-    integer halo_width_x
-    integer halo_width_y
-    integer halo_width_z
-  end type cartesian_rect_parallel_element_type
-
-  type lon_lat_parallel_element_type
-    integer id
-    integer nlon
-    integer nlat
-    integer nlev
-    integer start_lon_idx(2)
-    integer start_lat_idx(2)
-    integer start_lev_idx(2)
-    integer halo_width_lon
-    integer halo_width_lat
-    integer halo_width_lev
-  end type lon_lat_parallel_element_type
 
   type parallel_element_type
     type(cartesian_rect_parallel_element_type), pointer :: cartesian_rect
@@ -45,8 +21,10 @@ contains
     nullify(pe%lon_lat)
     if (commons%mesh_type == 'cartesian_rect') then
       allocate(pe%cartesian_rect)
+      call cartesian_rect_parallel_element_init(pe%cartesian_rect)
     else if (commons%mesh_type == 'lon_lat') then
       allocate(pe%lon_lat)
+      call lon_lat_parallel_element_init(pe%lon_lat)
     end if
 
   end subroutine parallel_element_init
